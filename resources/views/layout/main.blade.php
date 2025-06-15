@@ -136,6 +136,12 @@
             data-accordion="false">
             <!-- tombol sidebar mulai dari sini -->
             <li class="nav-item">
+              <a class='nav-link' href="{{ url('dashboard') }}">
+                <i class="nav-icon bi bi-chevron-compact-right"></i>
+                <p>Dashboard</p>
+              </a>
+            </li>
+            <li class="nav-item">
               <a class='nav-link' href="{{ url('merk') }}">
                 <i class="nav-icon bi bi-chevron-compact-right"></i>
                 <p>Merk</p>
