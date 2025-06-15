@@ -22,8 +22,13 @@ class KendaraanController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
+        // cek apakah user memiliki izin untuk membuat kendaraan
+        if($request->user()->cannot('create', Kendaraan::class)) {
+            abort(403);
+        }
+
         $varian = Varian::all();
         return view('kendaraan.create', compact('varian'));
     }
@@ -33,6 +38,11 @@ class KendaraanController extends Controller
      */
     public function store(Request $request)
     {
+        // cek apakah user memiliki izin umtuk membuat kendaraan
+        if($request->user()->cannot('create', Kendaraan::class)) {
+            abort(403);
+        }
+
         // validasi input
         $input = $request->validate(
             [
@@ -100,8 +110,13 @@ class KendaraanController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Kendaraan $kendaraan)
+    public function edit(Request $request, Kendaraan $kendaraan)
     {
+        // cek apakah user memiliki izin umtuk mengedit kendaraan
+        if($request->user()->cannot('update', Kendaraan::class)) {
+            abort(403);
+        }
+
         $varian = Varian::all();
         return view('kendaraan.edit', compact('kendaraan', 'varian'));
     }
@@ -111,6 +126,11 @@ class KendaraanController extends Controller
      */
     public function update(Request $request, Kendaraan $kendaraan)
     {
+        // cek apakah user memiliki izin umtuk mengedit kendaraan
+        if($request->user()->cannot('update', Kendaraan::class)) {
+            abort(403);
+        }
+
         // validasi input - copas dari store
         $input = $request->validate(
             [
@@ -137,8 +157,14 @@ class KendaraanController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Kendaraan $kendaraan)
+    public function destroy(Request $request, Kendaraan $kendaraan)
     {
-        //
+        // cek apakah user memiliki izin untuk menghapus kendaraan
+        if($request->user()->cannot('destroy', $kendaraan)) {
+            abort(403);
+        }
+
+        $kendaraan->delete();
+        return redirect()->route('kendaraan.index')->with('success', 'Kendaraan deleted successfully');
     }
 }

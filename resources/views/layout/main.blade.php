@@ -79,7 +79,7 @@
                 src="{{ asset('assets/img/user.png') }}"
                 class="user-image rounded-circle shadow"
                 alt="User Image" />
-              <span class="d-none d-md-inline">Daniel Mido</span>
+              <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
             </a>
             <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
               <!--begin::User Image-->
@@ -89,15 +89,20 @@
                   class="rounded-circle shadow"
                   alt="User Image" />
                 <p>
-                  Daniel Mido
-                  <small>frontEnd Dev</small>
+                  {{ Auth::user()->name }}
+                  <small>{{ strtoupper( Auth::user()->role ) }}</small>
                 </p>
               </li>
               <!--end::User Image-->
               <!--begin::Menu Footer-->
-              <li class="user-footer">
-                <a href="#" class="btn btn-default btn-flat">Profile</a>
-                <a href="#" class="btn btn-default btn-flat float-end">Sign out</a>
+              <li class="user-footer d-flex justify-content-center">
+                <!-- Authentication -->
+                <form method="POST" action="{{ route('logout') }}">
+                  @csrf
+                  <x-dropdown-link :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();" class="btn btn-danger btn-flat">
+                    {{ __('Log Out') }}
+                  </x-dropdown-link>
+                </form>
               </li>
               <!--end::Menu Footer-->
             </ul>

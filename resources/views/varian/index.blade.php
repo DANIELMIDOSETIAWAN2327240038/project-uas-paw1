@@ -11,7 +11,9 @@
     <!-- Default box -->
     <div class="card">
       <div class="card-body">
+        @can('create', App\Models\Varian::class)
         <a href="{{ route('varian.create') }}" class="btn btn-dark mb-3"> Tambah </a>
+        @endcan
         <table style="width: 100%;">
           <thead>
             <tr>
@@ -24,6 +26,7 @@
             <tr>
               <td style="padding: 8px;"><img src="{{ $item->img_tipe }}" alt="pp" width="80px"></td>
               <td style="padding: 8px;">{{ $item->nama_tipe }}</td>
+              @can('delete', $item)
               <td>
                 <form action="{{ route('varian.destroy', $item->id) }}" method="POST" class="d-inline">
                   @csrf
@@ -31,6 +34,7 @@
                   <button type="submit" class="btn btn-danger show_confirm mt-2" data-lte-toggle="tooltip" title="Delete" data-nama="{{ $item->nama }}"> Hapus </button>
                 </form>
               </td>
+              @endcan
             </tr>
             @endforeach
           </tbody>

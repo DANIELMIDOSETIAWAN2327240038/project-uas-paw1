@@ -30,6 +30,11 @@ class MerkController extends Controller
      */
     public function store(Request $request)
     {
+        // cek apakah user memiliki izin utuk membuat merk
+        if($request->user()->cannot('create', Merk::class)) {
+            abort(403);
+        }
+
         $input = $request->validate([
             'nama_merk' => 'required|unique:merk',
             'img_merek' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -102,8 +107,13 @@ class MerkController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Merk $merk)
+    public function destroy(Request $request, Merk $merk)
     {
+        // cek apakah user memiliki izin untuk menghapus merk
+        if($request->user()->cannot('delete', Merk::class)) {
+            abort(403);
+        }
+
         $merk->delete();
         return redirect()->route('merk.index')->with('success', 'Merk deleted successfully');
     }

@@ -33,6 +33,11 @@ class VarianController extends Controller
      */
     public function store(Request $request)
     {
+        // cek apakah user memiliki izin untuk membuat varian
+        if($request->user()->cannot('create', Varian::class)) {
+            abort(403);
+        }
+
         $input = $request->validate(
             [
                 'nama_tipe' => 'required|unique:varian',
@@ -107,8 +112,13 @@ class VarianController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Varian $varian)
+    public function destroy(Request $request, Varian $varian)
     {
+        // cek apakah user memiliki izin untuk membuat varian
+        if($request->user()->cannot('create', Varian::class)) {
+            abort(403);
+        }
+
         $varian->delete();
         return redirect()->route('varian.index')->with('success', 'Varian deleted successfully');
     }

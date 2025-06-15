@@ -11,7 +11,9 @@
     <!-- Default box -->
     <div class="card">
       <div class="card-body">
+        @can('create', App\Models\Pelanggan::class)
         <a href="{{ route('pelanggan.create') }}" class="btn btn-dark mb-3"> Tambah </a>
+        @endcan
         <table style="width: 100%;">
           <thead>
             <tr>
@@ -26,6 +28,7 @@
               <td style="padding: 8px;">{{ $item->nama_pelanggan }}</td>
               <td style="padding: 8px;">{{ $item->jenis_kelamin }}</td>
               <td style="padding: 8px;">{{ $item->no_telepon }}</td>
+              @can('delete', $item)
               <td>
                 <form action="{{ route('pelanggan.destroy', $item->id) }}" method="POST" class="d-inline">
                   @csrf
@@ -33,6 +36,7 @@
                   <button type="submit" class="btn btn-danger show_confirm mt-2" data-lte-toggle="tooltip" title="Delete" data-nama="{{ $item->nama }}"> Hapus </button>
                 </form>
               </td>
+              @endcan
             </tr>
             @endforeach
           </tbody>

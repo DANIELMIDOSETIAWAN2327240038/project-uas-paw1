@@ -29,6 +29,11 @@ class PelangganController extends Controller
      */
     public function store(Request $request)
     {
+        // cek apakah user memiliki izin untuk membuat pelanggan
+        if($request->user()->cannot('create', Pelanggan::class)) {
+            abort(403);
+        }
+
         // validasi input
         $input = $request->validate([
             'nama_pelanggan' => 'required',
@@ -70,8 +75,13 @@ class PelangganController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Pelanggan $pelanggan)
+    public function destroy(Request $request, Pelanggan $pelanggan)
     {
+        // cek apakah user memiliki izin umtuk menghapus pelanggan
+        if($request->user()->cannot('delete', Pelanggan::class)) {
+            abort(403);
+        }
+
         $pelanggan->delete();
         return redirect()->route('pelanggan.index')->with('success', 'Pelanggan deleted successfully');
     }
