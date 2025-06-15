@@ -102,7 +102,8 @@ class KendaraanController extends Controller
      */
     public function edit(Kendaraan $kendaraan)
     {
-        //
+        $varian = Varian::all();
+        return view('kendaraan.edit', compact('kendaraan', 'varian'));
     }
 
     /**
@@ -110,7 +111,27 @@ class KendaraanController extends Controller
      */
     public function update(Request $request, Kendaraan $kendaraan)
     {
-        //
+        // validasi input - copas dari store
+        $input = $request->validate(
+            [
+                'tipe_kendaraan' => 'required',
+                'tahun_kendaraan' => 'required',
+                'transmisi_kendaraan' => 'required',
+                'plat_kendaraan' => 'required',
+                'harga_kendaraan' => 'required',
+                'kapasitasMesinOP_kendaraan' => 'required',
+                'kilometerOP_kendaraan' => 'required',
+                'bahanBakarOP_kendaraan' => 'required',
+                'warnaFisikOP_kendaraan' => 'required',
+                'varian_id' => 'required'
+            ]
+        );
+
+        // update data kendaraan
+        $kendaraan->update($input);
+
+        // redirect ke route kendaraan.index
+        return redirect()->route('kendaraan.index')->with('success', 'Kendaraan berhasil diperbarui.');
     }
 
     /**
