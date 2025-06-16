@@ -65,6 +65,7 @@
             <td>{{ $kendaraan->warnaFisikOP_kendaraan }}</td>
           </tr>
         </table>
+        <a href="{{ route('kendaraan.index') }}" class="btn btn-dark mt-3"> Kembali </a>
       </div>
       <!-- /.card-body -->
     </div>

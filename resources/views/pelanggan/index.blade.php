@@ -14,7 +14,7 @@
         @can('create', App\Models\Pelanggan::class)
         <a href="{{ route('pelanggan.create') }}" class="btn btn-dark mb-3"> Tambah </a>
         @endcan
-        <table style="width: 100%;">
+        <table style="width: 100%;" class="table table-bordered table-striped">
           <thead>
             <tr>
               <th style="padding: 8px; text-align: left;">Nama</th>
