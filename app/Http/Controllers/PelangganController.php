@@ -19,8 +19,13 @@ class PelangganController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
+        // cek apakah user memiliki izin untuk membuat pelanggan
+        if($request->user()->cannot('create', Pelanggan::class)) {
+            abort(403);
+        }
+
         return view('pelanggan.create');
     }
 
@@ -78,7 +83,7 @@ class PelangganController extends Controller
     public function destroy(Request $request, Pelanggan $pelanggan)
     {
         // cek apakah user memiliki izin umtuk menghapus pelanggan
-        if($request->user()->cannot('delete', Pelanggan::class)) {
+        if($request->user()->cannot('delete', $pelanggan)) {
             abort(403);
         }
 

@@ -22,8 +22,13 @@ class VarianController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
+        // cek apakah user memiliki izin untuk membuat varian
+        if($request->user()->cannot('create', Varian::class)) {
+            abort(403);
+        }
+
         $merk = Merk::all();
         return view('varian.create', compact('merk'));
     }
@@ -98,7 +103,7 @@ class VarianController extends Controller
      */
     public function edit(Varian $varian)
     {
-        // opsional
+        // tidak diperlukan
     }
 
     /**
@@ -106,7 +111,7 @@ class VarianController extends Controller
      */
     public function update(Request $request, Varian $varian)
     {
-        // opsional
+        // tidak diperlukan
     }
 
     /**
@@ -115,7 +120,7 @@ class VarianController extends Controller
     public function destroy(Request $request, Varian $varian)
     {
         // cek apakah user memiliki izin untuk membuat varian
-        if($request->user()->cannot('create', Varian::class)) {
+        if($request->user()->cannot('delete', $varian)) {
             abort(403);
         }
 

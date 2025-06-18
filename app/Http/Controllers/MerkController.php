@@ -20,8 +20,13 @@ class MerkController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
+        // cek apakah user memiliki izin utuk membuat merk
+        if($request->user()->cannot('create', Merk::class)) {
+            abort(403);
+        }
+
         return view('merk.create');
     }
 
@@ -93,7 +98,7 @@ class MerkController extends Controller
      */
     public function edit(Merk $merk)
     {
-        // opsional
+        // tidak diperlukan
     }
 
     /**
@@ -101,7 +106,7 @@ class MerkController extends Controller
      */
     public function update(Request $request, Merk $merk)
     {
-        // opsional
+        // tidak diperlukan
     }
 
     /**
@@ -110,7 +115,7 @@ class MerkController extends Controller
     public function destroy(Request $request, Merk $merk)
     {
         // cek apakah user memiliki izin untuk menghapus merk
-        if($request->user()->cannot('delete', Merk::class)) {
+        if($request->user()->cannot('delete', $merk)) {
             abort(403);
         }
 

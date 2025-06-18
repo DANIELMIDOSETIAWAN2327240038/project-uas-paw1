@@ -29,7 +29,7 @@ class MerkPolicy
      */
     public function create(User $user): bool
     {
-        return $user->role=='admin';
+        return $user->role == 'admin';
     }
 
     /**
@@ -37,7 +37,7 @@ class MerkPolicy
      */
     public function update(User $user, Merk $merk): bool
     {
-        return $user->role=='admin';
+        return $user->role == 'admin';
     }
 
     /**
@@ -45,7 +45,7 @@ class MerkPolicy
      */
     public function delete(User $user, Merk $merk): bool
     {
-        return $user->role=='admin';
+        return $user->role == 'admin';
     }
 
     /**
@@ -53,7 +53,7 @@ class MerkPolicy
      */
     public function restore(User $user, Merk $merk): bool
     {
-        return $user->role=='admin';
+        return false;
     }
 
     /**
@@ -61,6 +61,6 @@ class MerkPolicy
      */
     public function forceDelete(User $user, Merk $merk): bool
     {
-        return $user->role=='admin';
+        return false;
     }
 }

@@ -29,7 +29,7 @@ class KendaraanPolicy
      */
     public function create(User $user): bool
     {
-        return $user->role=='admin';
+        return $user->role == 'admin';
     }
 
     /**
@@ -37,7 +37,7 @@ class KendaraanPolicy
      */
     public function update(User $user, Kendaraan $kendaraan): bool
     {
-        return $user->role=='admin';
+        return $user->role == 'admin';
     }
 
     /**
@@ -45,7 +45,7 @@ class KendaraanPolicy
      */
     public function delete(User $user, Kendaraan $kendaraan): bool
     {
-        return $user->role=='admin';
+        return $user->role == 'admin';
     }
 
     /**
@@ -53,7 +53,7 @@ class KendaraanPolicy
      */
     public function restore(User $user, Kendaraan $kendaraan): bool
     {
-        return $user->role=='admin';
+        return false;
     }
 
     /**
@@ -61,6 +61,6 @@ class KendaraanPolicy
      */
     public function forceDelete(User $user, Kendaraan $kendaraan): bool
     {
-        return $user->role=='admin';
+        return false;
     }
 }

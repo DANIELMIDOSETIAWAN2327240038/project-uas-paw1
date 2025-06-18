@@ -29,7 +29,7 @@ class VarianPolicy
      */
     public function create(User $user): bool
     {
-        return $user->role=='admin';
+        return $user->role == 'admin';
     }
 
     /**
@@ -37,7 +37,7 @@ class VarianPolicy
      */
     public function update(User $user, Varian $varian): bool
     {
-        return $user->role=='admin';
+        return $user->role == 'admin';
     }
 
     /**
@@ -45,7 +45,7 @@ class VarianPolicy
      */
     public function delete(User $user, Varian $varian): bool
     {
-        return $user->role=='admin';
+        return $user->role == 'admin';
     }
 
     /**
@@ -53,7 +53,7 @@ class VarianPolicy
      */
     public function restore(User $user, Varian $varian): bool
     {
-        return $user->role=='admin';
+        return false;
     }
 
     /**
@@ -61,6 +61,6 @@ class VarianPolicy
      */
     public function forceDelete(User $user, Varian $varian): bool
     {
-        return $user->role=='admin';
+        return false;
     }
 }

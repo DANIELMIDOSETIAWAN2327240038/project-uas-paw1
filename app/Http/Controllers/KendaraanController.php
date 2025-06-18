@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Kendaraan;
 use App\Models\Varian;
-use App\Models\Merk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class KendaraanController extends Controller
 {
@@ -25,7 +25,7 @@ class KendaraanController extends Controller
     public function create(Request $request)
     {
         // cek apakah user memiliki izin untuk membuat kendaraan
-        if($request->user()->cannot('create', Kendaraan::class)) {
+        if ($request->user()->cannot('create', Kendaraan::class)) {
             abort(403);
         }
 
@@ -39,7 +39,7 @@ class KendaraanController extends Controller
     public function store(Request $request)
     {
         // cek apakah user memiliki izin umtuk membuat kendaraan
-        if($request->user()->cannot('create', Kendaraan::class)) {
+        if ($request->user()->cannot('create', Kendaraan::class)) {
             abort(403);
         }
 
@@ -113,7 +113,7 @@ class KendaraanController extends Controller
     public function edit(Request $request, Kendaraan $kendaraan)
     {
         // cek apakah user memiliki izin umtuk mengedit kendaraan
-        if($request->user()->cannot('update', Kendaraan::class)) {
+        if ($request->user()->cannot('update', $kendaraan)) {
             abort(403);
         }
 
@@ -127,7 +127,7 @@ class KendaraanController extends Controller
     public function update(Request $request, Kendaraan $kendaraan)
     {
         // cek apakah user memiliki izin umtuk mengedit kendaraan
-        if($request->user()->cannot('update', Kendaraan::class)) {
+        if ($request->user()->cannot('update', $kendaraan)) {
             abort(403);
         }
 
@@ -160,7 +160,7 @@ class KendaraanController extends Controller
     public function destroy(Request $request, Kendaraan $kendaraan)
     {
         // cek apakah user memiliki izin untuk menghapus kendaraan
-        if($request->user()->cannot('destroy', $kendaraan)) {
+        if ($request->user()->cannot('delete', $kendaraan)) {
             abort(403);
         }
 
