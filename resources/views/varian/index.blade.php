@@ -31,7 +31,7 @@
                 <form action="{{ route('varian.destroy', $item->id) }}" method="POST" class="d-inline">
                   @csrf
                   @method('DELETE')
-                  <button type="submit" class="btn btn-danger show_confirm mt-2" data-lte-toggle="tooltip" title="Delete" data-nama="{{ $item->nama }}"> Hapus </button>
+                  <button type="submit" class="btn btn-danger show_confirm mt-2" data-lte-toggle="tooltip" title="Delete" data-nama="{{ $item->nama_tipe }}"> Hapus </button>
                 </form>
               </td>
               @endcan
