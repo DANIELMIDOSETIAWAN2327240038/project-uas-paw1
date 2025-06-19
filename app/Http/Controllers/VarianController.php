@@ -15,7 +15,6 @@ class VarianController extends Controller
     public function index()
     {
         $varian = Varian::all();
-        // dd($mahasiswa);
         return view('varian.index')->with('varian', $varian);
     }
 

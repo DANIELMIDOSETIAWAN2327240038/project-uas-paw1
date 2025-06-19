@@ -164,12 +164,15 @@
                 <p>Kendaraan</p>
               </a>
             </li>
+            <!-- hanya admin yang bisa melihat menu pelanggan -->
+            @can('viewAny', App\Models\Pelanggan::class)
             <li class="nav-item">
               <a class='nav-link' href="{{ url('pelanggan') }}">
                 <i class="nav-icon bi bi-chevron-compact-right"></i>
                 <p>Pelanggan</p>
               </a>
             </li>
+            @endcan
           </ul>
           <!--end::Sidebar Menu-->
         </nav>

@@ -10,8 +10,13 @@ class PelangganController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        // cek apakah user memiliki izin untuk melihat pelanggan
+        if($request->user()->cannot('viewAny', Pelanggan::class)) {
+            abort(403);
+        }
+
         $pelanggan = Pelanggan::all();
         return view('pelanggan.index', compact('pelanggan'));
     }
@@ -58,7 +63,7 @@ class PelangganController extends Controller
      */
     public function show(Pelanggan $pelanggan)
     {
-        //
+        // tidak diperlukan
     }
 
     /**
@@ -66,7 +71,7 @@ class PelangganController extends Controller
      */
     public function edit(Pelanggan $pelanggan)
     {
-        //
+        // tidak diperlukan
     }
 
     /**
@@ -74,7 +79,7 @@ class PelangganController extends Controller
      */
     public function update(Request $request, Pelanggan $pelanggan)
     {
-        //
+        // tidak diperlukan
     }
 
     /**
