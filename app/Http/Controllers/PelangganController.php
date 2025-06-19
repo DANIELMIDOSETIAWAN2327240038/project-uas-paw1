@@ -87,7 +87,7 @@ class PelangganController extends Controller
      */
     public function destroy(Request $request, Pelanggan $pelanggan)
     {
-        // cek apakah user memiliki izin umtuk menghapus pelanggan
+        // cek apakah user memiliki izin untuk menghapus pelanggan
         if($request->user()->cannot('delete', $pelanggan)) {
             abort(403);
         }

@@ -22,7 +22,7 @@ class MerkController extends Controller
      */
     public function create(Request $request)
     {
-        // cek apakah user memiliki izin utuk membuat merk
+        // cek apakah user memiliki izin untuk membuat merk
         if($request->user()->cannot('create', Merk::class)) {
             abort(403);
         }
@@ -35,7 +35,7 @@ class MerkController extends Controller
      */
     public function store(Request $request)
     {
-        // cek apakah user memiliki izin utuk membuat merk
+        // cek apakah user memiliki izin untuk membuat merk
         if($request->user()->cannot('create', Merk::class)) {
             abort(403);
         }

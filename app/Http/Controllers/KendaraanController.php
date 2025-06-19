@@ -38,7 +38,7 @@ class KendaraanController extends Controller
      */
     public function store(Request $request)
     {
-        // cek apakah user memiliki izin umtuk membuat kendaraan
+        // cek apakah user memiliki izin untuk membuat kendaraan
         if ($request->user()->cannot('create', Kendaraan::class)) {
             abort(403);
         }
@@ -126,7 +126,7 @@ class KendaraanController extends Controller
      */
     public function update(Request $request, Kendaraan $kendaraan)
     {
-        // cek apakah user memiliki izin umtuk mengedit kendaraan
+        // cek apakah user memiliki izin untuk mengedit kendaraan
         if ($request->user()->cannot('update', $kendaraan)) {
             abort(403);
         }
