@@ -33,7 +33,7 @@
                 <form action="{{ route('pelanggan.destroy', $item->id) }}" method="POST" class="d-inline">
                   @csrf
                   @method('DELETE')
-                  <button type="submit" class="btn btn-danger show_confirm mt-2" data-lte-toggle="tooltip" title="Delete" data-nama="{{ $item->nama_pelanggan }}"> Hapus </button>
+                  <button type="submit" class="btn btn-danger show_confirm my-1" data-lte-toggle="tooltip" title="Delete" data-nama="{{ $item->nama_pelanggan }}"> Hapus </button>
                 </form>
               </td>
               @endcan
