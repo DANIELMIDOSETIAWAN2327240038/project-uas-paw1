@@ -119,11 +119,11 @@
       <!--begin::Sidebar Brand-->
       <div class="d-flex justify-content-center">
         <!--begin::Brand Link-->
-        <a href='#'>
+        <a href="{{ url('dashboard') }}">
           <!--begin::Brand Image-->
           <img
             src="{{ asset('images/logo.png') }}"
-            alt="AdminLTE Logo"
+            alt="MJA Logo"
             width="165px" class="mt-4 mb-3" />
           <!--end::Brand Image-->
         </a>
